@@ -1,0 +1,4 @@
+export {}
+
+declare module "vue" {
+}

@@ -7,8 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AButton: typeof import('@arco-design/web-vue')['Button']
-    ASpace: typeof import('@arco-design/web-vue')['Space']
+    IPhMoonBold: typeof import('~icons/ph/moon-bold')['default']
+    IPhSunBold: typeof import('~icons/ph/sun-bold')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

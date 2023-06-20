@@ -16,10 +16,13 @@ export default defineConfig({
         defineModel: true
       }
     }),
-    Icons(),
+    Icons({
+      autoInstall: true,
+      compiler: "vue3"
+    }),
     viteCompression(),
     vitePluginForArco({
-      theme: "@arco-themes/vue-digitforce"
+      theme: "@arco-themes/vue-gi-demo"
     }),
     Components({
       resolvers: [ArcoResolver({sideEffect: true}), IconsResolver()]

@@ -22,7 +22,7 @@
       ]
     },
     "types": [
-      "unplugin-vue-define-options/macros-global",
+//      "unplugin-vue-define-options/macros-global",
       "@types/node"
     ]
   },

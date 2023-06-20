@@ -1,8 +1,21 @@
 import {defineStore} from "pinia"
 
-type StoreType = any
+type StoreType = {
+  dark: boolean
+}
 export const UseStore = defineStore("main", {
-  state: (): StoreType => ({}),
+  state: (): StoreType => ({
+    dark: false
+  }),
   getters: {},
-  actions: {}
+  actions: {
+    toggleTheme() {
+      this.dark = !this.dark
+      if (this.dark) {
+        document.body.setAttribute("arco-theme", "dark")
+      } else {
+        document.body.removeAttribute("arco-theme");
+      }
+    }
+  }
 })

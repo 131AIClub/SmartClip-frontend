@@ -6,7 +6,8 @@ import AutoImport from "unplugin-auto-import/vite"
 import IconsResolver from "unplugin-icons/resolver"
 import Components from "unplugin-vue-components/vite"
 import viteCompression from "vite-plugin-compression";
-import DefineOptions from "unplugin-vue-define-options/vite"
+import {ArcoResolver} from "unplugin-vue-components/resolvers";
+import {vitePluginForArco} from "@arco-plugins/vite-vue";
 
 export default defineConfig({
   plugins: [
@@ -16,13 +17,15 @@ export default defineConfig({
       }
     }),
     Icons(),
-    DefineOptions(),
     viteCompression(),
+    vitePluginForArco({
+      theme: "@arco-themes/vue-digitforce"
+    }),
     Components({
-      resolvers: [IconsResolver()]
+      resolvers: [ArcoResolver({sideEffect: true}), IconsResolver()]
     }),
     AutoImport({
-      resolvers: [IconsResolver()]
+      resolvers: [ArcoResolver(), IconsResolver()]
     })
   ],
   resolve: {

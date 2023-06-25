@@ -1,5 +1,5 @@
 <template>
-  <a-card class="w-96 max-w-[30vw] cursor-pointer hover:shadow-around transition-all animate rounded-xl" :title="title"
+  <a-card class="md:w-96  md:max-w-[30vw] cursor-pointer hover:!shadow-around !transition-all card-animate !rounded-xl" :title="title"
           hoverable @click="router.push(link)">
     <template #extra>
       <a-link @click.stop="">More</a-link>
@@ -27,7 +27,7 @@ defineProps<{
 </script>
 
 <style scoped lang="less">
-.animate:hover {
+.card-animate:hover {
   transform: translateY(-4px);
 }
 </style>

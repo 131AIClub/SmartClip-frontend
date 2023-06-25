@@ -2,10 +2,12 @@ import {defineStore} from "pinia"
 
 type StoreType = {
   dark: boolean
+  is_mobile: boolean
 }
 export const UseStore = defineStore("main", {
   state: (): StoreType => ({
-    dark: false
+    dark: false,
+    is_mobile: window.innerWidth < 768
   }),
   getters: {},
   actions: {

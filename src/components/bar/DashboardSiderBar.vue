@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[calc(100vh-52px)] bg-[var(--dark-2)] flex flex-col justify-between items-center">
+  <div class="h-[calc(100vh-48px)] md:h-[calc(100vh-64px)]  bg-[var(--dark-2)] flex flex-col justify-between items-center">
     <a-menu
         class="flex-grow"
         :theme="store.dark?'dark':'light'"

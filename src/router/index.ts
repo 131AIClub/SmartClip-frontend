@@ -21,6 +21,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/components/dashboard/UserProfile.vue"),
         meta: {
           dashboard_menu: "0",
+          dashboard_breadcrumb: ["账号信息"],
           depth: 1
         }
       },
@@ -29,6 +30,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/components/dashboard/UserPersona.vue"),
         meta: {
           dashboard_menu: "1",
+          dashboard_breadcrumb: ["账号档案"],
           depth: 1
         }
       },
@@ -37,6 +39,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/components/dashboard/AllCaption.vue"),
         meta: {
           dashboard_menu: "2_0",
+          dashboard_breadcrumb: ["文案", "全部文案"],
           depth: 1
         }
       },
@@ -45,6 +48,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/components/dashboard/CreateCaption.vue"),
         meta: {
           dashboard_menu: "2_1",
+          dashboard_breadcrumb: ["文案", "生成文案"],
           depth: 1
         }
       },
@@ -53,6 +57,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/components/dashboard/AllVideo.vue"),
         meta: {
           dashboard_menu: "3_0",
+          dashboard_breadcrumb: ["视频", "全部视频"],
           depth: 1
         }
       },
@@ -61,6 +66,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/components/dashboard/CreateVideo.vue"),
         meta: {
           dashboard_menu: "3_1",
+          dashboard_breadcrumb: ["视频", "生成视频"],
           depth: 1
         }
       }

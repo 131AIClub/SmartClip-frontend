@@ -1,7 +1,7 @@
 <template>
   <header-bar/>
 
-  <router-view v-slot="{ Component }" class="mt-14 text-[var(--color-text-1)]">
+  <router-view v-slot="{ Component }" class="pt-12 md:pt-16 text-[var(--color-text-1)]">
     <transition :name="page_animation">
       <component :is="Component"/>
     </transition>

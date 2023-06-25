@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "@arco-plugins/vite-vue": "^1.4.5",
+    "@iconify-json/ant-design": "^1.1.5",
+    "@iconify-json/fluent": "^1.1.24",
     "@iconify-json/gridicons": "^1.1.10",
     "@iconify-json/iconoir": "^1.1.29",
     "@iconify-json/material-symbols": "^1.1.49",

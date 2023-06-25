@@ -1,6 +1,6 @@
 <template>
   <div>
-    persona
+    all-caption
   </div>
 </template>
 

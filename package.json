@@ -20,8 +20,12 @@
   },
   "devDependencies": {
     "@arco-plugins/vite-vue": "^1.4.5",
+    "@iconify-json/gridicons": "^1.1.10",
+    "@iconify-json/iconoir": "^1.1.29",
+    "@iconify-json/material-symbols": "^1.1.49",
     "@iconify-json/ph": "^1.1.5",
     "@iconify-json/quill": "^1.1.6",
+    "@iconify-json/uil": "^1.1.4",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "@vitejs/plugin-vue": "^4.2.3",

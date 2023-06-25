@@ -8,8 +8,53 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/dashboard",
     component: () => import("@/views/DashboardPage.vue"),
-    children:[
-
+    children: [
+      {
+        path: "",
+        redirect: "/dashboard/profile"
+      },
+      {
+        path: "profile",
+        component: () => import("@/components/dashboard/UserProfile.vue"),
+        meta: {
+          dashboard_menu: "0"
+        }
+      },
+      {
+        path: "persona",
+        component: () => import("@/components/dashboard/UserPersona.vue"),
+        meta: {
+          dashboard_menu: "1"
+        }
+      },
+      {
+        path: "caption",
+        component: () => import("@/components/dashboard/AllCaption.vue"),
+        meta: {
+          dashboard_menu: "2_0"
+        }
+      },
+      {
+        path: "create-caption",
+        component: () => import("@/components/dashboard/CreateCaption.vue"),
+        meta: {
+          dashboard_menu: "2_1"
+        }
+      },
+      {
+        path: "video",
+        component: () => import("@/components/dashboard/AllVideo.vue"),
+        meta: {
+          dashboard_menu: "3_0"
+        }
+      },
+      {
+        path: "create-video",
+        component: () => import("@/components/dashboard/CreateVideo.vue"),
+        meta: {
+          dashboard_menu: "3_1"
+        }
+      }
     ]
   }
 ]

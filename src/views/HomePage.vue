@@ -1,9 +1,9 @@
 <template>
   <div class="h-screen w-screen pt-14">
     <div class="mt-[50vh] flex justify-center items-center gap-12 px-12">
-      <home-card title="创建画像"/>
-      <home-card title="生成文案"/>
-      <home-card title="生成视频"/>
+      <home-card title="填写档案" link="/dashboard/persona"/>
+      <home-card title="生成文案" link="/dashboard/create-caption"/>
+      <home-card title="生成视频" link="/dashboard/create-video"/>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    persona
+    all-video
   </div>
 </template>
 

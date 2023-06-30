@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between items-start">
-    <dashboard-sider-bar class="fixed md:sticky top-12 md:top-16 shadow-around"/>
+    <dashboard-sider-bar class="fixed md:sticky top-12 md:top-16 shadow-around z-10"/>
 
     <div class="m-2 md:m-4 md:mx-6 pl-12 md:pl-0 flex-grow flex flex-col gap-3">
       <a-breadcrumb v-if="!store.is_mobile&&route.meta.dashboard_breadcrumb">

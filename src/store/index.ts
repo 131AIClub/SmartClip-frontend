@@ -1,13 +1,22 @@
 import {defineStore} from "pinia"
+import {client} from "@/assets/lib/request";
 
 type StoreType = {
   dark: boolean
+  initialized: boolean
   is_mobile: boolean
+  show_sign_modal: boolean
+  is_login: boolean
+  user: User | null
 }
 export const UseStore = defineStore("main", {
   state: (): StoreType => ({
     dark: false,
-    is_mobile: window.innerWidth < 768
+    initialized: false,
+    is_mobile: window.innerWidth < 768,
+    show_sign_modal: false,
+    is_login: false,
+    user: null
   }),
   getters: {},
   actions: {
@@ -18,6 +27,14 @@ export const UseStore = defineStore("main", {
       } else {
         document.body.removeAttribute("arco-theme");
       }
+    },
+    async initUser() {
+      const res = await client.get<{ user: User }>({url: "user/"})
+      if (res.code === 9000) {
+        this.is_login = true
+        this.user = res.data.user
+      }
+      this.initialized = true
     }
   }
 })

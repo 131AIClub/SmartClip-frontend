@@ -8,14 +8,20 @@
         />
       </a-avatar>
 
-      <div class="text-lg">Username</div>
+      <div class="text-lg">{{ user.username }}</div>
 
       <div class="flex justify-center items-center gap-4">
         <i-quill-vip class="text-xl text-[rgb(var(--gold-7))]"/>
         <div class="flex justify-center items-center  text-[rgb(var(--green-7))]">
           <i-ant-design-dollar-outlined class="text-sm"/>
-          1000
+          {{ user.point }}
         </div>
+      </div>
+
+      <div class="flex justify-end items-center">
+        <a-popconfirm content="确认退出登录？" @ok="logout">
+          <a-button status="warning">退出登录</a-button>
+        </a-popconfirm>
       </div>
     </div>
 
@@ -38,6 +44,21 @@
 </template>
 
 <script setup lang="ts">
+import {UseStore} from "@/store";
+import {assertNotEmpty} from "@/assets/lib/utils";
+import {ref} from "vue";
+import {useRouter} from "vue-router";
+
+const store = UseStore()
+const router = useRouter()
+const user = ref(assertNotEmpty(store.user, "用户未初始化"))
+
+const logout = () => {
+  router.push("/")
+  localStorage.removeItem("token")
+  store.user = null
+  store.is_login = false
+}
 
 </script>
 

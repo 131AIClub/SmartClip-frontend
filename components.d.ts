@@ -25,6 +25,7 @@ declare module 'vue' {
     IQuillVip: typeof import('~icons/quill/vip')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SignModal: typeof import('./src/components/modal/SignModal.vue')['default']
     UserPersona: typeof import('./src/components/dashboard/UserPersona.vue')['default']
     UserProfile: typeof import('./src/components/dashboard/UserProfile.vue')['default']
   }

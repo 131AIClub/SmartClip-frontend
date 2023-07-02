@@ -13,7 +13,7 @@
           <i-ph-moon-bold v-else/>
         </a-button>
 
-        <a-avatar class="h-[30px] w-[30px]" @click="router.push('/dashboard/profile')">
+        <a-avatar class="h-[30px] w-[30px] cursor-pointer" @click="router.push('/dashboard/profile')">
           <img
               alt="avatar"
               src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp"

@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-2 md:gap-4">
     <a-card title="基础信息" hoverable>
       <div class="flex justify-center items-center">
-        <a-form class="w-[96%] max-w-[640px] p-2" layout="vertical">
+        <a-form :model="form" class="w-[96%] max-w-[640px] p-2" layout="vertical">
 
           <a-form-item field="name" label="品牌描述" required>
             <a-input placeholder="用一段文字描述你的品牌"/>
@@ -22,7 +22,9 @@
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue";
 
+const form = ref({})
 </script>
 
 <style scoped lang="less">

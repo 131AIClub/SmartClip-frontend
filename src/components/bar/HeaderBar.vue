@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed left-0 top-0 bg-[var(--dark-2)] w-full border-b border-[var(--gray-3)] z-50">
+  <div class="fixed left-0 top-0 bg-[var(--theme-dark-2)] w-full border-b border-[var(--theme-gray-3)] z-50">
     <div class="h-12 md:h-16 px-3 md:px-8 flex justify-between items-center">
       <div class="flex justify-start items-center">
         <div class="text-[var(--color-text-2)] font-bold text-lg cursor-pointer" @click="router.push('/')">

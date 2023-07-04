@@ -38,43 +38,43 @@ const routes: Array<RouteRecordRaw> = [
         }
       },
       {
-        path: "caption",
-        component: () => import("@/components/dashboard/AllCaption.vue"),
+        path: "create-task",
+        component: () => import("@/components/dashboard/CreateTask.vue"),
         meta: {
           auth: true,
           depth: 1,
-          dashboard_menu: "2_0",
-          dashboard_breadcrumb: ["文案", "全部文案"]
+          dashboard_menu: "2",
+          dashboard_breadcrumb: ["创建任务"]
         }
       },
       {
-        path: "create-caption",
-        component: () => import("@/components/dashboard/CreateCaption.vue"),
+        path: "create-task/:task_id",
+        component: () => import("@/components/dashboard/CreateTask.vue"),
         meta: {
           auth: true,
           depth: 1,
-          dashboard_menu: "2_1",
-          dashboard_breadcrumb: ["文案", "生成文案"]
+          dashboard_menu: "2",
+          dashboard_breadcrumb: ["创建任务", "编辑草稿"]
         }
       },
       {
-        path: "video",
-        component: () => import("@/components/dashboard/AllVideo.vue"),
+        path: "task",
+        component: () => import("@/components/dashboard/AllTask.vue"),
         meta: {
           auth: true,
           depth: 1,
-          dashboard_menu: "3_0",
-          dashboard_breadcrumb: ["视频", "全部视频"]
+          dashboard_menu: "3",
+          dashboard_breadcrumb: ["全部任务"]
         }
       },
       {
-        path: "create-video",
-        component: () => import("@/components/dashboard/CreateVideo.vue"),
+        path: "task/:task_id",
+        component: () => import("@/components/dashboard/TaskDetail.vue"),
         meta: {
           auth: true,
           depth: 1,
-          dashboard_menu: "3_1",
-          dashboard_breadcrumb: ["视频", "生成视频"]
+          dashboard_menu: "3",
+          dashboard_breadcrumb: ["全部任务", "任务详情"]
         }
       }
     ]

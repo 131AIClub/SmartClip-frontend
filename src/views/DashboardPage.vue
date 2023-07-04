@@ -9,7 +9,12 @@
         </a-breadcrumb-item>
         <a-breadcrumb-item v-for="(v,k) in route.meta.dashboard_breadcrumb" :key="k">{{ v }}</a-breadcrumb-item>
       </a-breadcrumb>
-      <router-view/>
+      <suspense>
+        <router-view/>
+        <template #fallback>
+          Loading...
+        </template>
+      </suspense>
     </div>
   </div>
 </template>

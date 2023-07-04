@@ -7,10 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AllCaption: typeof import('./src/components/dashboard/AllCaption.vue')['default']
-    AllVideo: typeof import('./src/components/dashboard/AllVideo.vue')['default']
-    CreateCaption: typeof import('./src/components/dashboard/CreateCaption.vue')['default']
-    CreateVideo: typeof import('./src/components/dashboard/CreateVideo.vue')['default']
+    AllTask: typeof import('./src/components/dashboard/AllTask.vue')['default']
+    CreateTask: typeof import('./src/components/dashboard/CreateTask.vue')['default']
     DashboardSiderBar: typeof import('./src/components/bar/DashboardSiderBar.vue')['default']
     HeaderBar: typeof import('./src/components/bar/HeaderBar.vue')['default']
     HomeCard: typeof import('./src/components/card/HomeCard.vue')['default']
@@ -26,6 +24,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SignModal: typeof import('./src/components/modal/SignModal.vue')['default']
+    TaskDetail: typeof import('./src/components/dashboard/TaskDetail.vue')['default']
     UserPersona: typeof import('./src/components/dashboard/UserPersona.vue')['default']
     UserProfile: typeof import('./src/components/dashboard/UserProfile.vue')['default']
   }

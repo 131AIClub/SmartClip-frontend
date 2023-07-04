@@ -34,8 +34,8 @@ export default defineConfig({
   // server: {
   //   proxy: {
   //     "/api/": {
-  //       target: "https://api-clip.seutools.com/",
-  //       // target: "http://124.71.182.67:6324/",
+  //       // target: "https://api-clip.seutools.com/",
+  //       target: "http://124.71.182.67:6324/",
   //       changeOrigin: true, //支持跨域
   //       rewrite: (path) => path.replace(/^\/api/, "")
   //     }

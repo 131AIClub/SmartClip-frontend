@@ -38,6 +38,12 @@ class Client {
   async patch<T>(config: AxiosRequestConfig): Promise<Request<T>> {
     return await this.request({...config, method: "PATCH"})
   }
+
+  async video(video_id: number): Promise<string> {
+    return (await this.get<{ video_url: string }>(
+        {url: `video/${video_id}/`})
+    ).data.video_url.replace("http://124.71.182.67:6324/", api_url)
+  }
 }
 
 export const client = new Client()

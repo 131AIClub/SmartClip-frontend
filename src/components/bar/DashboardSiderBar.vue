@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[calc(100vh-48px)] md:h-[calc(100vh-64px)]  bg-[var(--dark-2)] flex flex-col justify-between items-center">
+  <div class="h-[calc(100vh-48px)] md:h-[calc(100vh-64px)]  bg-[var(--theme-dark-2)] flex flex-col justify-between items-center">
     <a-menu
         class="flex-grow"
         :theme="store.dark?'dark':'light'"
@@ -21,24 +21,18 @@
         </template>
         填写档案
       </a-menu-item>
-
-      <a-sub-menu key="2">
+      <a-menu-item key="2" @click="router.push('/dashboard/create-task')">
         <template #icon>
           <i-gridicons-caption/>
         </template>
-        <template #title>文案</template>
-        <a-menu-item key="2_0" @click="router.push('/dashboard/caption')">全部文案</a-menu-item>
-        <a-menu-item key="2_1" @click="router.push('/dashboard/create-caption')">生成文案</a-menu-item>
-      </a-sub-menu>
-
-      <a-sub-menu key="3">
+        创建任务
+      </a-menu-item>
+      <a-menu-item key="3" @click="router.push('/dashboard/task')">
         <template #icon>
           <i-ph-video/>
         </template>
-        <template #title>视频</template>
-        <a-menu-item key="3_0" @click="router.push('/dashboard/video')">全部视频</a-menu-item>
-        <a-menu-item key="3_1" @click="router.push('/dashboard/create-video')">生成视频</a-menu-item>
-      </a-sub-menu>
+        全部任务
+      </a-menu-item>
     </a-menu>
   </div>
 </template>

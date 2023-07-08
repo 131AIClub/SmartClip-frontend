@@ -8,6 +8,7 @@ type StoreType = {
   show_sign_modal: boolean
   is_login: boolean
   user: User | null
+  loading: boolean
 }
 export const UseStore = defineStore("main", {
   state: (): StoreType => ({
@@ -16,7 +17,8 @@ export const UseStore = defineStore("main", {
     is_mobile: window.innerWidth < 768,
     show_sign_modal: false,
     is_login: false,
-    user: null
+    user: null,
+    loading: false
   }),
   getters: {},
   actions: {

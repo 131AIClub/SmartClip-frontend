@@ -15,12 +15,12 @@
         </template>
         账号信息
       </a-menu-item>
-      <a-menu-item key="1" @click="router.push('/dashboard/persona')">
-        <template #icon>
-          <i-material-symbols-lab-profile-outline/>
-        </template>
-        填写档案
-      </a-menu-item>
+<!--      <a-menu-item key="1" @click="router.push('/dashboard/persona')">-->
+<!--        <template #icon>-->
+<!--          <i-material-symbols-lab-profile-outline/>-->
+<!--        </template>-->
+<!--        填写档案-->
+<!--      </a-menu-item>-->
       <a-menu-item key="2" @click="router.push('/dashboard/create-task')">
         <template #icon>
           <i-gridicons-caption/>

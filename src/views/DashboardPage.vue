@@ -9,12 +9,12 @@
         </a-breadcrumb-item>
         <a-breadcrumb-item v-for="(v,k) in route.meta.dashboard_breadcrumb" :key="k">{{ v }}</a-breadcrumb-item>
       </a-breadcrumb>
+
       <suspense>
         <router-view/>
-        <template #fallback>
-          Loading...
-        </template>
       </suspense>
+
+      <a-spin v-if="store.loading" tip="加载中"/>
     </div>
   </div>
 </template>
@@ -25,6 +25,7 @@ import {useRoute} from "vue-router";
 
 const store = UseStore()
 const route = useRoute()
+
 </script>
 
 <style scoped lang="less">

@@ -128,5 +128,7 @@ const login = async () => {
 .sign-modal .arco-modal {
   width: 480px;
   max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 </style>

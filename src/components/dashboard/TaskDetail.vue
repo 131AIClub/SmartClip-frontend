@@ -24,11 +24,18 @@
 
     <a-card title="原始视频" hoverable v-if="video_url">
       <div class="flex justify-center items-center">
-        <video width="320" height="240" controls>
+        <video class="max-h-[80vh]" controls>
           <source :src="video_url" type="video/mp4">
         </video>
       </div>
     </a-card>
+
+    <suspense>
+      <clip-result-card :task_id="data.task.taskId"/>
+      <template #fallback>
+        <a-spin tip="加载中"/>
+      </template>
+    </suspense>
   </div>
 </template>
 
@@ -39,35 +46,35 @@ import {Notification} from "@arco-design/web-vue";
 import {safeBack} from "@/router";
 import {computed, ref} from "vue";
 import {DateParser} from "@/assets/lib/utils";
+import {UseStore} from "@/store";
+import ClipResultCard from "@/components/card/ClipResultCard.vue";
 
 const route = useRoute()
 const router = useRouter()
+const store = UseStore()
+store.loading = true
 
-let video_url: string | null
 const {code, msg, data} = await client.get<{ task: Task }>({url: `task/${route.params.task_id}/`})
-try {
-  video_url = await client.video(data.task.videoId)
-} catch {
-  video_url = null
-}
 
 if (code !== 3000) {
   Notification.warning(msg)
   safeBack("/dashboard/task")
 }
 
+const video_url = await client.video(data.task.videoId)
+
 const base_info = ref([
   {label: "ID", value: data.task.taskId.toString()},
   {label: "创建于", value: new DateParser(data.task.taskCreateTime).all()},
-  {label: "状态", value: ["草稿", "切片中", "已完成"][data.task.taskStatus] || "错误"}
+  {label: "状态", value: ["任务失败", "草稿", "切片中", "已完成"][data.task.taskStatus + 1]}
 ])
 
 const clip_info = ref([
   {label: "视频类型", value: ["演讲", "新闻", "教学视频", "电商带货"][data.task.clipRequirement.videoType]},
   {label: "剪辑风格", value: ["自定义", "抽象", "正经"][data.task.clipRequirement.clipStyle]},
-  {label: "视频长度", value: ["长", "中", "短"][data.task.clipRequirement.clipStyle]},
+  {label: "视频长度", value: ["长", "中", "短"][data.task.clipRequirement.clipLength]},
   {label: "切片数量", value: data.task.clipRequirement.clipNum.toString()},
-  {label: "额外需求", value: data.task.clipRequirement.otherRequirement}
+  {label: "额外需求", value: data.task.clipRequirement.otherRequirement || "无"}
 ])
 
 const state = computed(() => {
@@ -82,8 +89,9 @@ const state = computed(() => {
   }
 })
 
+
+store.loading = false
 </script>
 
 <style scoped lang="less">
-
 </style>

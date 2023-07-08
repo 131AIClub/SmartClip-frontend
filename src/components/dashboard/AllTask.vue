@@ -2,14 +2,15 @@
   <div class="flex flex-col gap-2 md:gap-4">
     <a-card title="全部任务" hoverable>
       <a-table :columns="columns" :data="tasks" :pagination="{total,pageSize:page_size,simple:true}"
-               @row-click="toDetail">
+               @row-click="toDetail" @page-change="pageChange" v-model:loading="loading"
+               :size="store.is_mobile?'mini':'small'">
         <template #taskCreateTime="{ rowIndex }">
-          {{ date(tasks[rowIndex].taskCreateTime) }}
+          <div class="text-[10px] my-2">{{ date(tasks[rowIndex].taskCreateTime) }}</div>
         </template>
 
         <template #taskStatus="{ rowIndex }">
-          <a-tag :color="['gold','blue','green','red'][tasks[rowIndex].taskStatus]">
-            {{ ["草稿", "正在切片", "切片完成", "任务失败"][tasks[rowIndex].taskStatus] }}
+          <a-tag :color="['red','gold','blue','green',][tasks[rowIndex].taskStatus+1]">
+            {{ ["任务失败", "草稿", "正在切片", "切片完成"][tasks[rowIndex].taskStatus + 1] }}
           </a-tag>
         </template>
       </a-table>
@@ -23,9 +24,14 @@ import {ref} from "vue";
 import {DateParser} from "@/assets/lib/utils";
 import router from "@/router";
 import {TableData} from "@arco-design/web-vue"
+import {UseStore} from "@/store";
+
+const store = UseStore()
+store.loading = true
 
 const page = ref(0)
-const columns = ref([
+const loading = ref(false)
+const columns = ref<TableData[]>([
   {
     title: "ID",
     dataIndex: "taskId"
@@ -59,7 +65,15 @@ const toDetail = (task: TableData) => {
   router.push(`/dashboard/task/${task.taskId}`)
 }
 
+const pageChange = async (new_page: number) => {
+  page.value = new_page - 1
+  loading.value = true
+  await load()
+  loading.value = false
+}
+
 await load()
+store.loading = false
 
 </script>
 

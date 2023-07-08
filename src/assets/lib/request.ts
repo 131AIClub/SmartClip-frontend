@@ -42,7 +42,7 @@ class Client {
   async video(video_id: number): Promise<string> {
     return (await this.get<{ video_url: string }>(
         {url: `video/${video_id}/`})
-    ).data.video_url.replace("http://124.71.182.67:6324/", api_url)
+    ).data.video_url.replace("http://3.141.44.177:6324", api_url)
   }
 }
 

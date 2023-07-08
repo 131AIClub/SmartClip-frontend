@@ -23,4 +23,14 @@ declare global {
     clipRequirement: ClipRequirement
     videoId: number
   }
+
+  type Clip = {
+    clipId: number
+    clipVideoId: number
+    distributed: boolean
+    clipLength: number
+    clipTitle: string
+    clipDesc: string
+    clipText: string
+  }
 }

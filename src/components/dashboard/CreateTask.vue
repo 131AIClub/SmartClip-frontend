@@ -25,7 +25,7 @@
           </a-form-item>
 
           <a-form-item label="视频长度" required>
-            <a-select v-model="task.clipRequirement.clipStyle" :default-value="0">
+            <a-select v-model="task.clipRequirement.clipLength" :default-value="0">
               <a-option :value="0">长</a-option>
               <a-option :value="1">中</a-option>
               <a-option :value="2">短</a-option>
@@ -43,8 +43,8 @@
 
 
           <div class="flex justify-end items-center gap-4">
-            <a-button type="outline" status="success" @click="save(0)">保存草稿</a-button>
-            <a-button type="primary" status="success" @click="save(1)">创建任务</a-button>
+            <a-button type="outline" status="success" @click="save(0)" :disabled="!task.videoId">保存草稿</a-button>
+            <a-button type="primary" status="success" @click="save(1)" :disabled="!task.videoId">创建任务</a-button>
           </div>
         </a-form>
       </div>
@@ -59,9 +59,11 @@ import {client} from "@/assets/lib/request";
 import axios, {Canceler} from "axios"
 import {useRoute, useRouter} from "vue-router";
 import {safeBack} from "@/router";
+import {UseStore} from "@/store";
 
 const route = useRoute()
 const router = useRouter()
+const store = UseStore()
 const task = ref<Omit<Task, "taskId" | "taskStatus" | "taskCreateTime"> & { videoId?: number, taskId?: number }>({
   clipRequirement: {
     videoType: 0,
@@ -74,17 +76,15 @@ const task = ref<Omit<Task, "taskId" | "taskStatus" | "taskCreateTime"> & { vide
 })
 
 if (route.params.task_id) {
+  store.loading = true
   const {code, msg, data} = await client.get<{ task: Task }>({url: `task/${route.params.task_id}/`})
   if (code !== 3000) {
     Notification.warning(msg)
     safeBack("/dashboard/task")
   }
-
   task.value = data.task
-  console.log(task.value);
+  store.loading = false
 }
-
-
 const upload = (option: RequestOption): UploadRequest => {
   const {onProgress, onError, onSuccess, fileItem} = option
   if (!fileItem.file) throw Error("文件不存在")
@@ -93,6 +93,7 @@ const upload = (option: RequestOption): UploadRequest => {
   form.append("video", fileItem.file)
   let canceler: Canceler
 
+  task.value.videoId = 0
   client.post<{ resource_id: number }>({
     url: "video/",
     data: form,
@@ -104,8 +105,11 @@ const upload = (option: RequestOption): UploadRequest => {
       canceler = c
     })
   }).then(res => {
-    console.log(res.data.resource_id);
-    task.value.videoId = res.data.resource_id
+    if (res.code === 1000) {
+      task.value.videoId = res.data.resource_id
+    } else {
+      Notification.warning(res.msg)
+    }
     onSuccess("123")
   }).catch(err => {
     console.warn(err);
@@ -125,7 +129,7 @@ const save = async (is_draft: number) => {
     data: {task: task.value, is_draft}
   })
   if (res.code === 5000) {
-    Notification.success("创建成功")
+    Notification.success(is_draft ? "创建成功" : "已保存")
     await router.push(`/dashboard/task/${res.data.task_id}`)
   } else {
     Notification.warning(res.msg)

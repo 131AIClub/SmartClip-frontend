@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AllTask: typeof import('./src/components/dashboard/AllTask.vue')['default']
+    ClipResultCard: typeof import('./src/components/card/ClipResultCard.vue')['default']
     CreateTask: typeof import('./src/components/dashboard/CreateTask.vue')['default']
     DashboardSiderBar: typeof import('./src/components/bar/DashboardSiderBar.vue')['default']
     HeaderBar: typeof import('./src/components/bar/HeaderBar.vue')['default']
@@ -15,7 +16,6 @@ declare module 'vue' {
     IAntDesignDollarOutlined: typeof import('~icons/ant-design/dollar-outlined')['default']
     IFluentApps16Regular: typeof import('~icons/fluent/apps16-regular')['default']
     IGridiconsCaption: typeof import('~icons/gridicons/caption')['default']
-    IMaterialSymbolsLabProfileOutline: typeof import('~icons/material-symbols/lab-profile-outline')['default']
     IPhMoonBold: typeof import('~icons/ph/moon-bold')['default']
     IPhSunBold: typeof import('~icons/ph/sun-bold')['default']
     IPhUser: typeof import('~icons/ph/user')['default']

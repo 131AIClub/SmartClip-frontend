@@ -61,16 +61,29 @@ const opened = ref<{
   task: null,
   visible: false
 })
+const fetch = async () => {
+  const res = await client.get<PaginatedResponse<Task>>({
+    url: "/clip/task/",
+    params: params.value
+  })
+  result.value.count = res.data.count
+  result.value.tasks = res.data.results
+}
 
 const get_task = async () => {
   result.value.loading = true
   try {
-    const res = await client.get<PaginatedResponse<Task>>({
-      url: "/clip/task/",
-      params: params.value
-    })
-    result.value.count = res.data.count
-    result.value.tasks = res.data.results
+    await fetch()
+    const inter = setInterval(async () => {
+      let poll = false
+      for (const task of result.value.tasks) {
+        if (!task.error && task.status !== 7) {
+          poll = true
+        }
+      }
+      if (!poll) clearInterval(inter)
+      await fetch()
+    }, 30000)
   } finally {
     result.value.loading = false
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-start items-center">
-    <div class="relative flex-shrink-0 rounded-l overflow-hidden" @click="open_video_modal">
+    <div class="relative flex-shrink-0 rounded-l overflow-hidden cursor-pointer" @click="open_video_modal">
       <img :src="auth(result.cover)" class="aspect-video h-40" :alt="result.title"/>
       <div class="absolute bottom-0 w-full pt-2 pr-1 text-end text-[12px] text-white"
            style="background: linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.8))">
@@ -9,7 +9,7 @@
     </div>
 
     <div class="flex-grow place-self-start">
-      <table class="w-full w-full">
+      <table class="w-full">
         <tbody>
         <tr class="h-8">
           <td class="bg-gray-100 border text-center text-gray-500 w-[10%]">标题</td>

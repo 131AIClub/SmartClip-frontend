@@ -32,7 +32,7 @@
 
           <div v-else>
             <a-button type="text" loading>
-              {{ ["创建中", "已创建", "分析中", "已分析", "剪辑中", "已剪辑", "待结束"][task.status] }}
+              {{ ["创建中", "分析中", "剪辑中", "待结束"][Math.floor(task.status / 2) + 1] }}
             </a-button>
           </div>
         </div>

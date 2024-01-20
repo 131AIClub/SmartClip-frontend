@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 w-full">
     <div class="rounded overflow-hidden flex justify-between items-center bg-white gap-2 border">
-      <div class="relative cursor-pointer flex-shrink-0" @click="open_video_modal">
+      <div class="relative cursor-pointer flex-shrink-0" @click="emits('click_source',task)">
         <img :src="auth(task.source.cover)" class="aspect-video h-40" :alt="task.source.name"/>
         <div class="absolute bottom-0 w-full pt-2 pr-1 text-end text-[12px] text-white"
              style="background: linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.8))">
@@ -16,12 +16,28 @@
             <div class="text-gray-500 text-[12px]">{{ time }}</div>
           </div>
 
-          <a-button status="success" type="text" shape="circle">
-            <icon-double-right/>
-          </a-button>
+          <div v-if="task.error">
+            <a-button status="danger" type="text" @click="emits('show_result',task)">
+              出错了
+              <icon-double-right/>
+            </a-button>
+          </div>
+
+          <div v-else-if="task.status===7">
+            <a-button status="success" type="text" @click="emits('show_result',task)">
+              已完成
+              <icon-double-right/>
+            </a-button>
+          </div>
+
+          <div v-else>
+            <a-button type="text" loading>
+              {{ ["创建中", "已创建", "分析中", "已分析", "剪辑中", "已剪辑", "待结束"][task.status] }}
+            </a-button>
+          </div>
         </div>
 
-        <a-descriptions :data="data" bordered :column="4" size="small" class="mt-2"/>
+        <a-descriptions :data="data" bordered :column="3" size="small" class="mt-2"/>
       </div>
     </div>
   </div>
@@ -30,14 +46,15 @@
 <script setup lang="ts">
 import {computed, ref} from "vue";
 import {auth, DateParser, second_to_time} from "@/assets/lib/utils";
-import {UseStore} from "@/stores";
+import type {DescData} from "@arco-design/web-vue";
 
 const props = defineProps<{ task: Task }>()
+const emits = defineEmits(["click_source", "show_result"])
 const time = computed(() => (new DateParser(props.task.create_time)).all())
-const data = ref([
+const data = ref<DescData[]>([
   {
     label: "剪辑数量",
-    value: props.task.clip_num
+    value: props.task.clip_num.toString()
   },
   {
     label: "剪辑类型",
@@ -45,11 +62,7 @@ const data = ref([
   },
   {
     label: "花费",
-    value: props.task.lock_point
-  },
-  {
-    label: "状态",
-    value: props.task.status
+    value: props.task.lock_point.toString()
   },
   {
     label: "剪辑要求",
@@ -62,15 +75,6 @@ const data = ref([
     span: 4
   },
 ])
-const store = UseStore()
-
-const open_video_modal = async () => {
-  store.video_modal = {
-    visible: true,
-    title: props.task.source.name,
-    url: auth(props.task.source.file)
-  }
-}
 </script>
 
 <style scoped lang="less">

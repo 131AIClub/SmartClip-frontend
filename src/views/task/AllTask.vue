@@ -7,7 +7,8 @@
 
       <div v-else>
         <div class="flex justify-start items-center flex-wrap mt-4" v-if="result.count">
-          <task-card v-for="(task,k) in result.tasks" :key="k" :task="task"/>
+          <task-card v-for="(task,k) in result.tasks" :key="k" :task="task"
+                     @click_source="open_video_modal" @show_result="open_result_modal"/>
         </div>
         <div v-else class="flex justify-center items-center h-[57px]">
           没有查询到结果
@@ -28,13 +29,19 @@
         </div>
       </div>
     </transition>
+
+    <task-result-modal v-if="opened.task" :task="opened.task" v-model:visible="opened.visible"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import {client} from "@/assets/lib/request";
 import {ref} from "vue";
+import {auth} from "@/assets/lib/utils";
+import {UseStore} from "@/stores";
+import TaskResultModal from "@/components/modal/TaskResultModal.vue";
 
+const store = UseStore()
 const result = ref<{
   count: number
   loading: boolean
@@ -47,6 +54,14 @@ const result = ref<{
 const params = ref({
   page: 1
 })
+const opened = ref<{
+  task: null | Task
+  visible: boolean
+}>({
+  task: null,
+  visible: false
+})
+
 const get_task = async () => {
   result.value.loading = true
   try {
@@ -67,6 +82,18 @@ const refresh_task = async () => {
   await get_task()
 }
 
+const open_video_modal = async (task: Task) => {
+  store.video_modal = {
+    visible: true,
+    title: task.source.name,
+    url: auth(task.source.file)
+  }
+}
+
+const open_result_modal = async (task: Task) => {
+  opened.value.task = task
+  opened.value.visible = true
+}
 
 get_task()
 </script>

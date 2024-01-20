@@ -25,17 +25,27 @@ declare global {
     create_time: string
   }
 
+  type Result = {
+    title: string
+    description: string
+    cover: string
+    file: string
+    length: number
+    size: number
+  }
+
   type Task = {
     id: number
     title: string
     status: number
     remark: string
     description: string
+    create_time: string
     source: Source
     clip_num: number
     clip_type: 0 | 1 | 2
     lock_point: number
-    create_time: string
-    error_message: string
+    result: Result[]
+    error: boolean
   }
 }

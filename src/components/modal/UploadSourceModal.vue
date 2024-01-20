@@ -1,5 +1,5 @@
 <template>
-  <a-modal v-model:visible="visible" hide-title :footer="false" width="auto"
+  <a-modal v-model:visible="visible" hide-title :footer="false" width="520px"
            :mask-style="{backdropFilter: 'blur(1px)'}">
     <a-tabs default-active-key="1">
       <a-tab-pane key="1" title="上传视频文件">

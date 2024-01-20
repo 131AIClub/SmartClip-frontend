@@ -32,7 +32,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "all",
         name: "task-all",
-        component: () => import("@/views/task/TaskPage.vue"),
+        component: () => import("@/views/task/AllTask.vue"),
       },
       {
         path: "create",

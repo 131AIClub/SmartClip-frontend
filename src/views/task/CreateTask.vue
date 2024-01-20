@@ -111,7 +111,7 @@ const create_task = async () => {
 
   if (res.code === 116) {
     Notification.success("创建成功")
-    await router.replace('/task/all')
+    await router.push('/task/all')
   } else {
     Notification.warning(res.msg)
   }

@@ -9,10 +9,12 @@ declare module 'vue' {
   export interface GlobalComponents {
     EditSourceModal: typeof import('./src/components/modal/EditSourceModal.vue')['default']
     HeadBar: typeof import('./src/components/bar/HeadBar.vue')['default']
+    ResultCard: typeof import('./src/components/card/ResultCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SourceCard: typeof import('./src/components/card/SourceCard.vue')['default']
     TaskCard: typeof import('./src/components/card/TaskCard.vue')['default']
+    TaskResultModal: typeof import('./src/components/modal/TaskResultModal.vue')['default']
     UploadSourceModal: typeof import('./src/components/modal/UploadSourceModal.vue')['default']
     VideoModal: typeof import('./src/components/modal/VideoModal.vue')['default']
   }

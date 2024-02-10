@@ -1,5 +1,6 @@
-import {createRouter, createWebHistory} from "vue-router"
-import type {RouteRecordRaw} from "vue-router";
+import { isAuthenticated } from "@/assets/lib/utils";
+import { createRouter, createWebHistory } from "vue-router"
+import type { RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -51,6 +52,15 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes: routes
+})
+
+router.beforeEach((to, from) => {
+  if (
+    !isAuthenticated() &&
+    to.name !== 'login' && to.name !== 'home'
+  ) {
+    return { name: 'login', query: { next: to.path } }
+  }
 })
 
 export const safe_back = function (path: string) {

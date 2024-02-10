@@ -4,21 +4,21 @@
       <a-form :model="form" layout="vertical">
         <div class="flex justify-center items-center">
           <video class="max-h-[60vh] max-w-[80%] rounded" v-if="select.selected" :src="auth(select.selected.file)"
-                 controls/>
+            controls />
         </div>
         <a-form-item field="title" label="源视频">
           <a-select :options="select.options" :loading="select.loading" placeholder="在素材视频中搜索..." allow-search
-                    :filter-option="false" allow-clear @change="update_source" @search="search_source"
-                    @clear="select.search = ''"/>
+            :filter-option="false" allow-clear @change="update_source" @search="search_source"
+            @clear="select.search = ''" />
         </a-form-item>
         <a-form-item field="title" label="任务标题">
-          <a-input v-model="form.title" placeholder="不影响剪辑结果"/>
+          <a-input v-model="form.title" placeholder="不影响剪辑结果" />
         </a-form-item>
         <a-form-item field="description" label="任务描述">
-          <a-textarea v-model="form.description" placeholder="请输入剪辑要求"/>
+          <a-textarea v-model="form.description" placeholder="请输入剪辑要求" />
         </a-form-item>
         <a-form-item field="remark" label="任务备注">
-          <a-textarea v-model="form.remark" placeholder="不影响剪辑结果"/>
+          <a-textarea v-model="form.remark" placeholder="不影响剪辑结果" />
         </a-form-item>
         <a-form-item field="type" label="剪辑类型">
           <a-radio-group v-model="form.clip_type">
@@ -27,8 +27,8 @@
             <a-radio :value="2">通用剪辑</a-radio>
           </a-radio-group>
         </a-form-item>
-        <a-form-item field="clip_num" label="切片数量">
-          <a-input-number v-model="form.clip_num" :min="1" :max="8" placeholder="成品数量"/>
+        <a-form-item v-if="form.clip_type != 0" field="clip_num" label="切片数量">
+          <a-input-number v-model="form.clip_num" :min="1" :max="8" placeholder="成品数量" />
         </a-form-item>
         <a-form-item>
           <a-button class="h-12 w-full !bg-black !text-white rounded-2xl mt-2" :disabled="!valid" @click="create_task">
@@ -41,10 +41,10 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from "vue";
-import {client} from "@/assets/lib/request";
-import {auth} from "@/assets/lib/utils";
-import {Notification} from "@arco-design/web-vue";
+import { computed, ref } from "vue";
+import { client } from "@/assets/lib/request";
+import { auth } from "@/assets/lib/utils";
+import { Notification } from "@arco-design/web-vue";
 import router from "@/router";
 
 const form = ref({
@@ -118,6 +118,4 @@ const create_task = async () => {
 }
 </script>
 
-<style scoped lang="less">
-
-</style>
+<style scoped lang="less"></style>

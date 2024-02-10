@@ -1,20 +1,20 @@
 <template>
   <div
-      class="flex flex-col justify-star items-center w-[648px] max-w-[90vw] mt-24 px-6 py-10 bg-[rgba(250,250,250,0.4)] rounded-2xl border border-gray-300">
+    class="flex flex-col justify-star items-center w-[648px] max-w-[90vw] mt-24 px-6 py-10 bg-[rgba(250,250,250,0.4)] rounded-2xl border border-gray-300">
     <div class="font-bold text-4xl text-black">登录</div>
 
-    <a-button class="h-14 w-full !bg-black !text-white rounded-2xl mt-8" @click="is_phone=!is_phone">
-      <icon-sync/>
+    <a-button class="h-14 w-full !bg-black !text-white rounded-2xl mt-8" @click="is_phone = !is_phone">
+      <icon-sync />
       <div class="ml-2">切换到账号密码登录</div>
     </a-button>
 
     <a-form :model="phone_form" layout="vertical" v-if="is_phone">
       <a-form-item field="name" label="手机号" class="mt-8">
-        <a-input class="h-12 rounded-lg bg-white" v-model="phone_form.phone" placeholder="请输入11位手机号"/>
+        <a-input class="h-12 rounded-lg bg-white" v-model="phone_form.phone" placeholder="请输入11位手机号" />
       </a-form-item>
 
       <a-form-item field="post" label="验证码" class="mt-4">
-        <a-input class="h-12 rounded-lg bg-white" v-model="phone_form.code" placeholder="请输入验证码"/>
+        <a-input class="h-12 rounded-lg bg-white" v-model="phone_form.code" placeholder="请输入验证码" />
         <a-button class="h-12 ml-4" status="success" :disabled="!valid_phone" @click="send_sms">
           发送验证码
         </a-button>
@@ -22,11 +22,11 @@
     </a-form>
     <a-form :model="name_form" layout="vertical" v-else>
       <a-form-item field="name" label="用户名" class="mt-8">
-        <a-input class="h-12 rounded-lg bg-white" v-model="name_form.username" placeholder="请输入用户名"/>
+        <a-input class="h-12 rounded-lg bg-white" v-model="name_form.username" placeholder="请输入用户名" />
       </a-form-item>
 
       <a-form-item field="post" label="密码" class="mt-4">
-        <a-input class="h-12 rounded-lg bg-white" v-model="name_form.password" placeholder="请输入密码"/>
+        <a-input class="h-12 rounded-lg bg-white" v-model="name_form.password" placeholder="请输入密码" />
       </a-form-item>
     </a-form>
 
@@ -39,12 +39,12 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from "vue";
-import {useRoute, useRouter} from "vue-router";
-import {client} from "@/assets/lib/request";
-import {Notification} from "@arco-design/web-vue";
-import {UseStore} from "@/stores";
-import {flat_query} from "@/assets/lib/utils";
+import { computed, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { client } from "@/assets/lib/request";
+import { Notification } from "@arco-design/web-vue";
+import { UseStore } from "@/stores";
+import { flat_query } from "@/assets/lib/utils";
 
 const store = UseStore()
 
@@ -102,6 +102,4 @@ const disable = computed(() => {
 })
 </script>
 
-<style scoped lang="less">
-
-</style>
+<style scoped lang="less"></style>

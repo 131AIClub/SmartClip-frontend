@@ -1,13 +1,14 @@
-import {resolve} from "path";
-import {defineConfig} from "vite"
+import { resolve } from "path";
+import { defineConfig } from "vite"
 import Vue from "@vitejs/plugin-vue"
 import Icons from "unplugin-icons/vite"
 import AutoImport from "unplugin-auto-import/vite"
 import IconsResolver from "unplugin-icons/resolver"
 import Components from "unplugin-vue-components/vite"
 import viteCompression from "vite-plugin-compression";
-import {ArcoResolver} from "unplugin-vue-components/resolvers";
-import {vitePluginForArco} from "@arco-plugins/vite-vue";
+import { ArcoResolver } from "unplugin-vue-components/resolvers";
+import { vitePluginForArco } from "@arco-plugins/vite-vue";
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
   plugins: [
@@ -21,15 +22,17 @@ export default defineConfig({
       compiler: "vue3"
     }),
     viteCompression(),
-    vitePluginForArco({
-      theme: "@arco-themes/vue-gi-demo"
-    }),
     Components({
-      resolvers: [ArcoResolver({sideEffect: true}), IconsResolver()]
+      resolvers: [ArcoResolver({ sideEffect: true }), IconsResolver()]
     }),
     AutoImport({
       resolvers: [ArcoResolver(), IconsResolver()]
-    })
+    }),
+    vitePluginForArco({
+      theme: "@arco-themes/vue-gi-demo",
+      style: "css"
+    }),
+    VueDevTools()
   ],
   resolve: {
     alias: {

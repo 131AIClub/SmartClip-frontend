@@ -1,4 +1,5 @@
-import type {LocationQueryValue} from "vue-router";
+import { UseStore } from "@/stores";
+import type { LocationQueryValue } from "vue-router";
 
 
 export class DateParser {
@@ -105,4 +106,10 @@ export const second_to_time = (s: number) => {
   if (second < 10) t += "0"
   t += second.toFixed(0)
   return t
+}
+
+
+export function isAuthenticated() {
+  const store = UseStore()
+  return Boolean(store.user)
 }
